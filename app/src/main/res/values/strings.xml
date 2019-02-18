@@ -1,0 +1,14 @@
+<resources>
+    <string name="app_name">Sekolahku</string>
+    <string name="hello">Hello World</string>
+    <string name="first_name">Nama Depan</string>
+    <string name="last_name">Nama Belakang</string>
+    <string name="email">Email</string>
+
+    <string-array name="spinner_jenjang_item">
+        <item>TK</item>
+        <item>SD</item>
+        <item>SMP</item>
+        <item>SMA</item>
+    </string-array>
+</resources>

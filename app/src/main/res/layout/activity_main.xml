@@ -23,7 +23,8 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="0.5"
                 android:hint="@string/first_name"
-                android:inputType="textPersonName" />
+                android:inputType="textPersonName"
+                android:nextFocusDown="@id/edit_text_last_name"/>
 
             <EditText
                 android:id="@+id/edit_text_last_name"
@@ -40,6 +41,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="No handphone"
+            android:maxLength="12"
             android:inputType="phone" />
 
         <EditText
@@ -116,13 +118,7 @@
             android:hint="Alamat"
             android:inputType="textMultiLine" />
 
-        <Button
-            android:id="@+id/button_save"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@color/colorAccent"
-            android:text="SAVE"
-            android:textColor="@android:color/white" />
+
 
     </LinearLayout>
 </ScrollView>

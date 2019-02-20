@@ -1,4 +1,4 @@
-package id.co.rumahcoding.sekolahku;
+package id.co.rumahcoding.sekolahku.activity;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -14,10 +14,11 @@ import android.widget.Toast;
 
 import java.util.regex.Pattern;
 
+import id.co.rumahcoding.sekolahku.R;
 import id.co.rumahcoding.sekolahku.database.DatabaseManager;
 import id.co.rumahcoding.sekolahku.model.Student;
 
-public class MainActivity extends AppCompatActivity {
+public class FormActivity extends AppCompatActivity {
 
     private EditText editTextFirstName, editTextLastName, editTextEmail;
     private EditText editTextPhone, editTextAddress;
@@ -31,7 +32,7 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_form);
 
         editTextFirstName = findViewById(R.id.edit_text_first_name);
         editTextLastName = findViewById(R.id.edit_text_last_name);
@@ -120,7 +121,14 @@ public class MainActivity extends AppCompatActivity {
             validateForm();
         } else {
             long id = databaseManager.addStudent(student);
-            Toast.makeText(this, "Data berhasil disimpan dengan id " + id, Toast.LENGTH_SHORT).show();
+
+            if (id == -1) {
+                Toast.makeText(this, "Data gagal disimpan", Toast.LENGTH_SHORT).show();
+            } else {
+                Toast.makeText(this, "Data berhasil disimpan dengan id " + id, Toast.LENGTH_SHORT).show();
+                finish();
+            }
+
         }
     }
 

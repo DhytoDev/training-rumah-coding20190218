@@ -2,9 +2,11 @@ package id.co.rumahcoding.sekolahku.activity;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.util.Patterns;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
@@ -45,8 +47,58 @@ public class FormActivity extends AppCompatActivity {
         checkBoxWriting = findViewById(R.id.checkbox_writing);
         checkBoxCoding = findViewById(R.id.checkbox_coding);
 
+        long id = getIntent().getLongExtra("id", 0);
+
         databaseManager = new DatabaseManager(this);
         databaseManager.open();
+
+        Student student = null;
+
+        if (id > 0) {
+            student = databaseManager.getStudentById(id);
+            Log.d("ID", String.valueOf(id));
+        }
+
+        if (student != null) {
+            editTextFirstName.setText(student.getFirstName());
+            editTextLastName.setText(student.getLastName());
+            editTextEmail.setText(student.getEmail());
+            editTextPhone.setText(student.getPhone());
+            editTextAddress.setText(student.getAddress());
+
+            String gender = student.getGender();
+
+            if (gender.equals("Pria")) {
+                radioGroupGender.check(R.id.radio_man);
+            } else if (gender.equals("Wanita")) {
+                radioGroupGender.check(R.id.radio_woman);
+            }
+
+            ArrayAdapter adapter = (ArrayAdapter) spinnerEducation.getAdapter();
+            int position = adapter.getPosition(student.getEducation());
+            spinnerEducation.setSelection(position);
+
+            String hobby = student.getHobby();
+
+            if (hobby.contains("Membaca")) {
+                checkBoxReading.setChecked(true);
+            } else {
+                checkBoxReading.setChecked(false);
+            }
+
+            if (hobby.contains("Menulis")) {
+                checkBoxWriting.setChecked(true);
+            } else {
+                checkBoxWriting.setChecked(false);
+            }
+
+            if (hobby.contains("Coding")) {
+                checkBoxCoding.setChecked(true);
+            } else {
+                checkBoxCoding.setChecked(false);
+            }
+        }
+
     }
 
     @Override
@@ -120,15 +172,23 @@ public class FormActivity extends AppCompatActivity {
         if (!isValid) {
             validateForm();
         } else {
-            long id = databaseManager.addStudent(student);
+            long intentId = getIntent().getLongExtra("id", 0);
 
-            if (id == -1) {
-                Toast.makeText(this, "Data gagal disimpan", Toast.LENGTH_SHORT).show();
-            } else {
-                Toast.makeText(this, "Data berhasil disimpan dengan id " + id, Toast.LENGTH_SHORT).show();
+            if (intentId > 0) {
+                student.setId(intentId);
+                databaseManager.updateStudent(student);
+                Toast.makeText(this, "Data berhasil diupdate", Toast.LENGTH_SHORT).show();
                 finish();
-            }
+            } else {
+                long id = databaseManager.addStudent(student);
 
+                if (id == -1) {
+                    Toast.makeText(this, "Data gagal disimpan", Toast.LENGTH_SHORT).show();
+                } else {
+                    Toast.makeText(this, "Data berhasil disimpan dengan id " + id, Toast.LENGTH_SHORT).show();
+                    finish();
+                }
+            }
         }
     }
 

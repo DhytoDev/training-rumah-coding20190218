@@ -5,8 +5,12 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.SearchView;
+import android.view.ContextMenu;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ListView;
 
 import java.util.List;
@@ -19,6 +23,8 @@ import id.co.rumahcoding.sekolahku.model.Student;
 public class ListActivity extends AppCompatActivity {
 
     private ListView studentListView;
+    private SearchView searchView;
+
     private List<Student> students;
     private StudentListAdapter adapter;
 
@@ -28,6 +34,31 @@ public class ListActivity extends AppCompatActivity {
         setContentView(R.layout.activity_list);
 
         studentListView = findViewById(R.id.listview_students);
+        searchView = findViewById(R.id.search_view);
+
+        registerForContextMenu(studentListView);
+
+        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String s) {
+
+                return false;
+            }
+
+            @Override
+            public boolean onQueryTextChange(String keyword) {
+                students.clear();
+
+                DatabaseManager dbManager = new DatabaseManager(ListActivity.this);
+                dbManager.open();
+
+                students.addAll(dbManager.searchStudentByName(keyword));
+
+                adapter.notifyDataSetChanged();
+
+                return false;
+            }
+        });
     }
 
     @Override
@@ -69,15 +100,7 @@ public class ListActivity extends AppCompatActivity {
                     .setPositiveButton("Ya", new DialogInterface.OnClickListener() {
                         @Override
                         public void onClick(DialogInterface dialogInterface, int i) {
-                            DatabaseManager dbManager = new DatabaseManager(ListActivity.this);
-                            dbManager.open();
-
-                            dbManager.deleteAll();
-
-                            dbManager.close();
-
-                            students.clear();
-                            adapter.notifyDataSetChanged();
+                            deleteAll();
                         }
                     })
                     .setNegativeButton("Tidak", new DialogInterface.OnClickListener() {
@@ -93,5 +116,75 @@ public class ListActivity extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
+    private void deleteAll() {
+        DatabaseManager dbManager = new DatabaseManager(ListActivity.this);
+        dbManager.open();
 
+        dbManager.deleteAll();
+
+        dbManager.close();
+
+        students.clear();
+        adapter.notifyDataSetChanged();
+    }
+
+    @Override
+    public void onCreateContextMenu(ContextMenu menu, View v, ContextMenu.ContextMenuInfo menuInfo) {
+        getMenuInflater().inflate(R.menu.context_menu, menu);
+        super.onCreateContextMenu(menu, v, menuInfo);
+    }
+
+    @Override
+    public boolean onContextItemSelected(MenuItem item) {
+        int id = item.getItemId();
+
+        AdapterView.AdapterContextMenuInfo menuInfo = (AdapterView.AdapterContextMenuInfo) item.getMenuInfo();
+
+        final int position = menuInfo.position;
+
+        final Student student = students.get(position);
+
+        switch (id) {
+            case R.id.update_menu:
+                Intent intent = new Intent(ListActivity.this, FormActivity.class);
+                intent.putExtra("id", student.getId());
+                startActivity(intent);
+
+                break;
+            case R.id.delete_menu:
+                new AlertDialog.Builder(this)
+                        .setTitle("Hapus Siswa")
+                        .setMessage("Anda yakin ingin menghapus ?")
+                        .setIcon(android.R.drawable.ic_dialog_alert)
+                        .setPositiveButton("Ya", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialogInterface, int i) {
+                                deleteStudent(student, position);
+                            }
+                        })
+                        .setNegativeButton("Tidak", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialogInterface, int i) {
+
+                            }
+                        })
+                        .show();
+
+                break;
+        }
+
+        return super.onContextItemSelected(item);
+    }
+
+    private void deleteStudent(Student student, int position) {
+        DatabaseManager dbManager = new DatabaseManager(ListActivity.this);
+        dbManager.open();
+
+        dbManager.deleteStudentById(student.getId());
+        dbManager.close();
+
+        students.remove(position);
+
+        adapter.notifyDataSetChanged();
+    }
 }

@@ -16,6 +16,9 @@ public class DetailActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_detail);
 
+        if (getSupportActionBar() != null)
+            getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
         textName = findViewById(R.id.textview_name);
         textPhone = findViewById(R.id.textview_phone);
         textGender = findViewById(R.id.textview_gender);
@@ -31,5 +34,11 @@ public class DetailActivity extends AppCompatActivity {
         textHobby.setText(student.getHobby());
         textAddress.setText(student.getAddress());
         textEducation.setText(student.getEducation());
+    }
+
+    @Override
+    public boolean onSupportNavigateUp() {
+        finish();
+        return super.onSupportNavigateUp();
     }
 }

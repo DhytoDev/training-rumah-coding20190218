@@ -1,0 +1,200 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".activity.DetailActivity">
+
+    <ImageView
+        android:id="@+id/image_name5"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="16dp"
+        android:layout_marginTop="192dp"
+        android:src="@android:drawable/ic_menu_info_details"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/image_header" />
+
+    <TextView
+        android:id="@+id/label_name5"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="8dp"
+        android:layout_marginTop="176dp"
+        android:text="Hobi"
+        app:layout_constraintLeft_toRightOf="@id/image_name"
+        app:layout_constraintTop_toBottomOf="@id/image_header" />
+
+    <TextView
+        android:id="@+id/textview_hobby"
+        style="@style/TextAppearance.AppCompat.Title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="8dp"
+        android:layout_marginTop="176dp"
+        app:layout_constraintLeft_toRightOf="@id/image_name"
+        app:layout_constraintTop_toBottomOf="@id/label_name"
+        tools:text="Membaca, Menulis" />
+
+    <ImageView
+        android:id="@+id/image_name6"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="16dp"
+        android:layout_marginTop="236dp"
+        android:src="@android:drawable/ic_menu_info_details"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/image_header" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="8dp"
+        android:layout_marginTop="224dp"
+        android:text="Alamat"
+        app:layout_constraintLeft_toRightOf="@id/image_name"
+        app:layout_constraintTop_toBottomOf="@id/image_header" />
+
+    <TextView
+        android:id="@+id/textview_address"
+        style="@style/TextAppearance.AppCompat.Title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="8dp"
+        android:layout_marginTop="224dp"
+        app:layout_constraintLeft_toRightOf="@id/image_name"
+        app:layout_constraintTop_toBottomOf="@id/label_name"
+        tools:text="Jalan Asmara No. Ciinta" />
+
+    <ImageView
+        android:id="@+id/image_name3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="16dp"
+        android:layout_marginTop="100dp"
+        android:src="@android:drawable/ic_menu_info_details"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/image_header" />
+
+    <TextView
+        android:id="@+id/label_name3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="8dp"
+        android:layout_marginTop="88dp"
+        android:text="Jenis Kelamin"
+        app:layout_constraintLeft_toRightOf="@id/image_name"
+        app:layout_constraintTop_toBottomOf="@id/image_header" />
+
+    <TextView
+        android:id="@+id/textview_gender"
+        style="@style/TextAppearance.AppCompat.Title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="8dp"
+        android:layout_marginTop="88dp"
+        app:layout_constraintLeft_toRightOf="@id/image_name"
+        app:layout_constraintTop_toBottomOf="@id/label_name"
+        tools:text="Pria" />
+
+    <ImageView
+        android:id="@+id/image_name4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="16dp"
+        android:layout_marginTop="144dp"
+        android:src="@android:drawable/ic_menu_info_details"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/image_header" />
+
+    <TextView
+        android:id="@+id/label_name4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="8dp"
+        android:layout_marginTop="132dp"
+        android:text="PEndidikan Terakhir"
+        app:layout_constraintLeft_toRightOf="@id/image_name"
+        app:layout_constraintTop_toBottomOf="@id/image_header" />
+
+    <TextView
+        android:id="@+id/textview_education"
+        style="@style/TextAppearance.AppCompat.Title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="8dp"
+        android:layout_marginTop="132dp"
+        app:layout_constraintLeft_toRightOf="@id/image_name"
+        app:layout_constraintTop_toBottomOf="@id/label_name"
+        tools:text="SMA" />
+
+    <ImageView
+        android:id="@+id/image_name2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="16dp"
+        android:layout_marginTop="56dp"
+        android:src="@android:drawable/ic_menu_info_details"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/image_header" />
+
+    <TextView
+        android:id="@+id/label_name2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="8dp"
+        android:layout_marginTop="44dp"
+        android:text="Handphone"
+        app:layout_constraintLeft_toRightOf="@id/image_name"
+        app:layout_constraintTop_toBottomOf="@id/image_header" />
+
+    <TextView
+        android:id="@+id/textview_phone"
+        style="@style/TextAppearance.AppCompat.Title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        tools:layout_editor_absoluteX="56dp"
+        tools:layout_editor_absoluteY="163dp"
+        tools:text="08134156xxxx" />
+
+    <ImageView
+        android:id="@+id/image_header"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="8dp"
+        android:src="@drawable/ic_student"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <ImageView
+        android:id="@+id/image_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="12dp"
+        android:layout_marginStart="16dp"
+        android:src="@android:drawable/ic_menu_info_details"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/image_header" />
+
+    <TextView
+        android:id="@+id/label_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:text="Nama"
+        app:layout_constraintLeft_toRightOf="@id/image_name"
+        app:layout_constraintTop_toBottomOf="@id/image_header" />
+
+    <TextView
+        android:id="@+id/textview_name"
+        style="@style/TextAppearance.AppCompat.Title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        app:layout_constraintLeft_toRightOf="@id/image_name"
+        app:layout_constraintTop_toBottomOf="@id/label_name"
+        tools:text="Ahmad Abdul" />
+
+</android.support.constraint.ConstraintLayout>

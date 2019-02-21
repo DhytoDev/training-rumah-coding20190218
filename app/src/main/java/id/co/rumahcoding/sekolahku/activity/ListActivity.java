@@ -38,6 +38,17 @@ public class ListActivity extends AppCompatActivity {
 
         registerForContextMenu(studentListView);
 
+        studentListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int position, long l) {
+                Student student = students.get(position);
+
+                Intent intent = new Intent(ListActivity.this, DetailActivity.class);
+                intent.putExtra("student", student);
+                startActivity(intent);
+            }
+        });
+
         searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
             public boolean onQueryTextSubmit(String s) {
